@@ -18,12 +18,14 @@ import java.io.IOException;
 public class HomeFormController {
     public TextField txtjon;
     public ImageView btnjon;
+    static String name="";
 
     public void txtjonOnActon(ActionEvent event) {
         btnjonClick();
     }
 
     public void btnjonClick() {
+        name=txtjon.getText();
         if (txtjon.getText().equals("") || txtjon.getText().equals("please enter your name !")){
             txtjon.setStyle("-fx-border-color: red");
             txtjon.setText("please enter your name !");
@@ -41,7 +43,7 @@ public class HomeFormController {
         }
 
         stage.setResizable(false);
-//        stage.setTitle(Detail.name+" in your chat");
+        stage.setTitle(name+" in your chat");
         stage.show();
         stage.centerOnScreen();
         txtjon.clear();
