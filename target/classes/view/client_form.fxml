@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #b3ccb3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatApplication.controller.ClientController">
+   <children>
+      <VBox layoutX="123.0" layoutY="205.0" prefHeight="587.0" prefWidth="400.0" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="55.0" prefWidth="400.0" style="-fx-background-color: white; -fx-background-color: #b3ccb3;">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/user.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="lblClientName" prefHeight="25.0" prefWidth="115.0" text="client name">
+                     <HBox.margin>
+                        <Insets left="15.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="40.0" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="100.0" right="25.0" top="18.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../assets/call.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="43.0" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="5.0" top="18.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../assets/video.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="23.0" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="30.0" right="20.0" top="18.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../assets/dots.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <ScrollPane prefHeight="566.0" prefWidth="400.0">
+               <content>
+                  <Pane prefHeight="530.0" prefWidth="397.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <ImageView fitHeight="39.0" fitWidth="39.0" layoutX="354.0" layoutY="600.0" onMouseClicked="#mouseClickOnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="354.0" AnchorPane.topAnchor="600.0">
+         <image>
+            <Image url="@../assets/send2.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtMessage" layoutX="54.0" layoutY="599.0" onAction="#txtMessageOnAction" prefHeight="38.0" prefWidth="296.0" style="-fx-background-radius: 30; -fx-background-color: white;" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="599.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </TextField>
+      <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="11.0" layoutY="599.0" onMouseClicked="#btnimojiOnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/imoji.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="316.0" layoutY="603.0" onMouseClicked="#btnfileOnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/file.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
