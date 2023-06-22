@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="275.0" prefWidth="515.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatApplication.controller.HomeFormController">
+   <children>
+      <ImageView fitHeight="229.0" fitWidth="303.0" layoutX="14.0" layoutY="29.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Component%2022.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtjon" layoutX="117.0" layoutY="144.0" onAction="#txtjonOnActon" prefHeight="34.0" prefWidth="283.0" style="-fx-background-radius: 0; -fx-border-width: 1 1 1 1; -fx-border-color: blue; -fx-background-color: white;">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <Label layoutX="52.0" layoutY="118.0" text="Enter your name :" AnchorPane.topAnchor="118.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="btnjon" fitHeight="48.0" fitWidth="148.0" layoutX="329.0" layoutY="195.0" onMouseClicked="#btnjonClick" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/join.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="14.0" layoutY="253.0" text="chat application " />
+      <Label layoutX="182.0" text="create your chat" textFill="#5062ff">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="437.0" layoutY="253.0" text="version 1.0.0" />
+   </children>
+</AnchorPane>
