@@ -9,15 +9,26 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientController {
     public Label lblClientName;
     public TextField txtMessage;
+    private List<String> fileList;
 
     @FXML
     void initialize(){
         lblClientName.setText(HomeFormController.name);
+        fileList=new ArrayList<>();
+        fileList.add("*.jpg");
+        fileList.add("*.doc");
+        fileList.add("*.png");
+        fileList.add("*.pdf");
     }
 
     public void mouseEnterAnim(MouseEvent event) {
@@ -60,5 +71,12 @@ public class ClientController {
     }
 
     public void btnfileOnAction(MouseEvent event) {
+        FileChooser chooser =new FileChooser();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("choose allowed ",fileList));
+        File file = chooser.showOpenDialog(null);
+
+        if (file!=null){
+            System.out.println(file.getAbsolutePath());
+        }
     }
 }
