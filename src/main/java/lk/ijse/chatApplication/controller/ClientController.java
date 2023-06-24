@@ -12,7 +12,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +24,9 @@ public class ClientController {
     public Label lblClientName;
     public TextField txtMessage;
     private List<String> fileList;
+
+    private DataInputStream inputStream;
+    private DataOutputStream outputStream;
 
     @FXML
     void initialize(){
@@ -29,6 +36,24 @@ public class ClientController {
         fileList.add("*.doc");
         fileList.add("*.png");
         fileList.add("*.pdf");
+        new Thread(()->{
+            try {
+                Socket socket = new Socket("localhost",3031);
+
+                inputStream = new DataInputStream(socket.getInputStream());
+                outputStream = new DataOutputStream(socket.getOutputStream());
+
+                String message= "";
+                while (!message.equals("finish")){
+                    message = inputStream.readUTF();
+                    System.out.println("server sent - "+message);
+
+                }
+
+            } catch (IOException e) {
+
+            }
+        }).start();
     }
 
     public void mouseEnterAnim(MouseEvent event) {
@@ -62,6 +87,13 @@ public class ClientController {
     }
 
     public void mouseClickOnAction(MouseEvent event) {
+        try {
+            outputStream.writeUTF(txtMessage.getText().trim());
+            outputStream.flush();
+            System.out.println("sent !");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void txtMessageOnAction(ActionEvent event) {
