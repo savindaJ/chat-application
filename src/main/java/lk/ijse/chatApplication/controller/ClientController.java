@@ -1,8 +1,10 @@
 package lk.ijse.chatApplication.controller;
 
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -10,9 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -28,8 +31,8 @@ import java.util.List;
 public class ClientController {
     public Label lblClientName;
     public TextField txtMessage;
-    public TextArea areaMessage;
     public ImageView btnSend;
+    public VBox msgVboxAp;
     private List<String> fileList;
 
     private DataInputStream inputStream;
@@ -69,10 +72,33 @@ public class ClientController {
                         nameWithoutMsg.append(words[i]+" ");
                     }
 
+                    HBox hBox = new HBox(12); //12
+
+
                     if (clientName.equalsIgnoreCase(lblClientName.getText())){
-                        areaMessage.appendText("\nME "+nameWithoutMsg);
+                        String myMsg = "Me "+nameWithoutMsg;
+                        Label label = new Label();
+
+                        label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                        label.setStyle("-fx-font-size: 15");
+
+                        label.setText(myMsg);
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.getChildren().add(label);
+                        Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
                     }else {
-                        areaMessage.appendText("\n"+message);
+
+                        String riciveMsg = message;
+
+                        Label label = new Label();
+                        label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                        label.setStyle("-fx-font-size: 15");
+                        label.setText(riciveMsg);
+                        hBox.setAlignment(Pos.BOTTOM_LEFT);
+                        hBox.getChildren().add(label);
+                        Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
                     }
                 }
 
@@ -115,10 +141,11 @@ public class ClientController {
     public void mouseClickOnAction() {
         if (txtMessage.getText().equals("finish")){
             try {
-                outputStream.writeUTF(clientName+txtMessage.getText());
+                outputStream.writeUTF(txtMessage.getText());
                 outputStream.flush();
                 Stage stage = (Stage) btnSend.getScene().getWindow();
                 stage.close();
+                return;
             } catch (IOException e) {
                 e.printStackTrace();
             }
