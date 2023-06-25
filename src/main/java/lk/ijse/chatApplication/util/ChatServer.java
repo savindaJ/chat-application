@@ -11,12 +11,13 @@ import java.util.Map;
 public class ChatServer {
     private static Map<String, Socket> connectedClients = new HashMap<>();
     private static List<Socket> socketList = new ArrayList<>();
+    static DataOutputStream outputStream = null;
 
 
-    public static void main(String[] args) {
+    public static void start() {
         Socket clientSocket;
-        try {
-            ServerSocket serverSocket = new ServerSocket(3031);
+        try (ServerSocket serverSocket = new ServerSocket(3031)){
+
             System.out.println("Server started. Waiting for client connections...");
 
             while (true) {
@@ -37,12 +38,10 @@ public class ChatServer {
                         String incomingMessage = "";
                         System.out.println(incomingMessage);
                         while (!(incomingMessage = inputStream.readUTF()).equals("finish")) {
-                            System.out.println("Received from client " + port + ": " + incomingMessage);
+//                            System.out.println("Received from client " + port + ": " + incomingMessage);
 
                             for(Socket socket:socketList){
-                                DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-                                outputStream.writeUTF(incomingMessage);
-                                outputStream.flush();
+                                sentMessage(socket,incomingMessage);
                             }
 
                         }
@@ -50,7 +49,6 @@ public class ChatServer {
                         // Remove the client from the connectedClients map
                         socketList.remove(finalClientSocket);
                         connectedClients.remove(port);
-
                         // Close the connection
                         finalClientSocket.close();
                         System.out.println("Client disconnected: " + port);
@@ -66,5 +64,15 @@ public class ChatServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void sentMessage(Socket socket,String incomingMessage) throws IOException {
+        try {
+            outputStream = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        outputStream.writeUTF(incomingMessage);
+        outputStream.flush();
     }
 }

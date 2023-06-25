@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -62,12 +63,15 @@
             </HBox>
             <ScrollPane prefHeight="566.0" prefWidth="400.0">
                <content>
-                  <Pane prefHeight="530.0" prefWidth="397.0" />
+                  <Pane prefHeight="530.0" prefWidth="397.0">
+                     <children>
+                        <TextArea fx:id="areaMessage" editable="false" layoutY="-2.0" prefHeight="534.0" prefWidth="400.0" scrollLeft="20.0" />
+                     </children></Pane>
                </content>
             </ScrollPane>
          </children>
       </VBox>
-      <ImageView fitHeight="39.0" fitWidth="39.0" layoutX="354.0" layoutY="600.0" onMouseClicked="#mouseClickOnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="354.0" AnchorPane.topAnchor="600.0">
+      <ImageView fx:id="btnSend" fitHeight="39.0" fitWidth="39.0" layoutX="354.0" layoutY="600.0" onMouseClicked="#mouseClickOnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="354.0" AnchorPane.topAnchor="600.0">
          <image>
             <Image url="@../assets/send2.png" />
          </image>

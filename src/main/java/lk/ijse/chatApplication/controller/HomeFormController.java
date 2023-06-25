@@ -2,6 +2,7 @@ package lk.ijse.chatApplication.controller;
 
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -12,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.chatApplication.util.ChatServer;
 
 import java.io.IOException;
 
@@ -19,6 +21,13 @@ public class HomeFormController {
     public TextField txtjon;
     public ImageView btnjon;
     static String name="";
+
+    @FXML
+    void initialize(){
+//       new Thread(()->{
+//           ChatServer.start();
+//       }).start();
+    }
 
     public void txtjonOnActon(ActionEvent event) {
         btnjonClick();
