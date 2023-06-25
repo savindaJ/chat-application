@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -20,11 +21,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class ClientController {
     private DataOutputStream outputStream;
 
     private String clientName;
+    private PrintWriter writer;
 
     @FXML
     void initialize(){
@@ -55,6 +57,7 @@ public class ClientController {
 
                 inputStream = new DataInputStream(socket.getInputStream());
                 outputStream = new DataOutputStream(socket.getOutputStream());
+                writer = new PrintWriter(socket.getOutputStream(), false);
 
                 String message = "";
 
@@ -72,11 +75,60 @@ public class ClientController {
                         nameWithoutMsg.append(words[i]+" ");
                     }
 
-                    HBox hBox = new HBox(12); //12
+                    String[] msgToAr = msg.split(" ");
+                    String st = "";
+                    for (int i = 0; i < msgToAr.length - 1; i++) {
+                        st += msgToAr[i + 1] + " ";
+                    }
+
+                    System.out.println("image path"+st);
+
+                    Text text = new Text(st);
+                    String firstChars = "";
+                    if (st.length() > 3) {
+                        firstChars = st.substring(1, 4);
+                        System.out.println(firstChars);
+                    }
+
+                    HBox hBox = new HBox(12);
+
+                    if (firstChars.equalsIgnoreCase("img")){
+                        st = st.substring(3, st.length() - 1);
+
+
+                        File file = new File(st);
+                        Image image = new Image(file.toURI().toString());
+
+                        ImageView imageView = new ImageView(image);
+
+                        imageView.setFitHeight(150);
+                        imageView.setFitWidth(200);
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+                        if (!clientName.equalsIgnoreCase(lblClientName.getText())) {
+
+                            msgVboxAp.setAlignment(Pos.TOP_LEFT);
+                            hBox.setAlignment(Pos.CENTER_LEFT);
+
+
+                            Text text1 = new Text("  " + clientName + " :");
+                            hBox.getChildren().add(text1);
+                            hBox.getChildren().add(imageView);
+
+                        } else {
+                            hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                            hBox.getChildren().add(imageView);
+                            Text text1 = new Text(": Me ");
+                            hBox.getChildren().add(text1);
+
+                        }
+
+                        Platform.runLater(() -> msgVboxAp.getChildren().addAll(hBox));
+                    }
 
 
                     if (clientName.equalsIgnoreCase(lblClientName.getText())){
-                        String myMsg = "Me "+nameWithoutMsg;
+                        String myMsg = "Me \n"+nameWithoutMsg;
                         Label label = new Label();
 
                         label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -173,13 +225,16 @@ public class ClientController {
     public void btnimojiOnAction(MouseEvent event) {
     }
 
-    public void btnfileOnAction(MouseEvent event) {
+    public void btnfileOnAction(MouseEvent event) throws IOException {
         FileChooser chooser =new FileChooser();
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("choose allowed ",fileList));
         File file = chooser.showOpenDialog(null);
 
         if (file!=null){
             String path = file.getAbsolutePath();
+            writer.println(clientName+ " " + "img" + path);
+            writer.flush();
+            System.out.println("flushed !");
         }
     }
 }

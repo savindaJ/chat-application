@@ -24,9 +24,9 @@ public class HomeFormController {
 
     @FXML
     void initialize(){
-//       new Thread(()->{
-//           ChatServer.start();
-//       }).start();
+       new Thread(()->{
+           ChatServer.start();
+       }).start();
     }
 
     public void txtjonOnActon(ActionEvent event) {
