@@ -102,7 +102,15 @@ public class ClientController {
                 }
 
             } catch (IOException e) {
-                System.out.println("server down !");
+                HBox hBox = new HBox();
+                Label label = new Label();
+                label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                label.setStyle("-fx-font-size: 15");
+                label.setText("left client");
+                hBox.setAlignment(Pos.CENTER);
+                hBox.getChildren().add(label);
+                Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
             }
         }).start();
     }
