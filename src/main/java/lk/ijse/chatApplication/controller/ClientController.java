@@ -285,7 +285,7 @@ public class ClientController {
                         Label label = new Label();
                         label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                         label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-                        label.setStyle("-fx-font-size: 15");
+                        label.setStyle("-fx-font-size: 20");
                         label.setText(riciveMsg);
                         hBox.setAlignment(Pos.BOTTOM_LEFT);
                         hBox.getChildren().add(label);
