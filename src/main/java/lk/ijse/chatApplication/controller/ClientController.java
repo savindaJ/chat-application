@@ -64,6 +64,7 @@ public class ClientController {
 
                 String message = "";
 
+                L1:
                 while (!message.equals("finish")){
 
                     message = inputStream.readUTF();
@@ -177,9 +178,7 @@ public class ClientController {
 
 
                     }else if(! chec[1].equals("imoji")){
-
                         String riciveMsg = message;
-
                         Label label = new Label();
                         label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                         label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
