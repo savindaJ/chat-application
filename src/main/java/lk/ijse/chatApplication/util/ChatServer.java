@@ -1,16 +1,16 @@
 package lk.ijse.chatApplication.util;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ChatServer {
-    private static Map<String, Socket> connectedClients = new HashMap<>();
-    private static List<Socket> socketList = new ArrayList<>();
+
+    private static final List<Socket> socketList = new ArrayList<>();
     static DataOutputStream outputStream = null;
 
 
@@ -23,17 +23,12 @@ public class ChatServer {
             while (true) {
                 clientSocket = serverSocket.accept();
                 System.out.println("Client connected: " + clientSocket);
-
                 Socket finalClientSocket = clientSocket;
                 Thread clientThread = new Thread(() -> {
                     try {
-
                         DataInputStream  inputStream = new DataInputStream(finalClientSocket.getInputStream());
-
                         int port = finalClientSocket.getPort();
-                        // Store the client's socket in the connectedClients map
                         socketList.add(finalClientSocket);
-                        connectedClients.put(port+"my port", finalClientSocket);
 
                         String incomingMessage = "";
                         System.out.println(incomingMessage);
@@ -43,13 +38,8 @@ public class ChatServer {
                             for(Socket socket:socketList){
                                 sentMessage(socket,incomingMessage);
                             }
-
                         }
-
-                        // Remove the client from the connectedClients map
                         socketList.remove(finalClientSocket);
-                        connectedClients.remove(port);
-                        // Close the connection
                         finalClientSocket.close();
                         System.out.println("Client disconnected: " + port);
                     } catch (IOException e) {
@@ -58,7 +48,6 @@ public class ChatServer {
                     }
                 });
 
-                // Start the client thread
                 clientThread.start();
             }
         } catch (IOException e) {
