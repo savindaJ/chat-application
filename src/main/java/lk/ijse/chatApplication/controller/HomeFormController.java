@@ -40,6 +40,11 @@ public class HomeFormController {
 
         HomeFormController.name =words[0];
 
+        if (txtjon.getText().equals("stop")){
+            System.exit(0);
+            return;
+        }
+
         if (txtjon.getText().equals("") || txtjon.getText().equals("please enter your name !")){
             txtjon.setStyle("-fx-border-color: red");
             txtjon.setText("please enter your name !");
