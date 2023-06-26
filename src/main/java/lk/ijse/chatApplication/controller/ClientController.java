@@ -203,7 +203,7 @@ public class ClientController {
                         ImageView imageView = new ImageView(image);
 
                         imageView.setFitWidth(100);
-                        imageView.setFitHeight(100);
+                        imageView.setFitHeight(150);
 
                         hBox.setAlignment(Pos.BOTTOM_RIGHT);
 
@@ -392,10 +392,7 @@ public class ClientController {
     }
 
     public void btnfileOnAction(MouseEvent event) {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Select Image File");
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-            File selectedFile = fileChooser.showOpenDialog(null);
+
 
         Label label = new Label();
         label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -403,11 +400,15 @@ public class ClientController {
         label.setStyle("-fx-font-size: 20");
         label.setText("Me :");
         try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Select Image File");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+            File selectedFile = fileChooser.showOpenDialog(null);
             File file = new File(selectedFile.getPath());
             Image image = new Image(file.toURI().toString());
             ImageView imageView = new ImageView(image);
             imageView.setFitWidth(100);
-            imageView.setFitHeight(100);
+            imageView.setFitHeight(150);
             HBox hBox = new HBox(12);
             hBox.setAlignment(Pos.BOTTOM_RIGHT);
             msgVboxAp.setAlignment(Pos.BOTTOM_LEFT);
