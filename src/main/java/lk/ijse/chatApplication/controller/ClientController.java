@@ -108,13 +108,10 @@ public class ClientController {
 
                     HBox hBox = new HBox(12);
 
-                    String mymsg = message;
-                    String[] checkWord = mymsg.split(" ");
-
                     if (clientName.equalsIgnoreCase(lblClientName.getText())){
 
-                        if (checkWord[1].equals("imoji")){
-                            if (checkWord[2].equals("imoji01")){
+                        if (words[1].equals("imoji")){
+                            if (words[2].equals("imoji01")){
                                 String myMsg = "Me "+img1;
                                 Label label = new Label();
                                 label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -124,7 +121,7 @@ public class ClientController {
                                 hBox.setAlignment(Pos.BOTTOM_RIGHT);
                                 hBox.getChildren().add(label);
                                 Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
-                            }else if(checkWord[2].equals("imoji02")){
+                            }else if(words[2].equals("imoji02")){
                                 String myMsg = "Me "+img2;
                                 Label label = new Label();
                                 label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -134,7 +131,7 @@ public class ClientController {
                                 hBox.setAlignment(Pos.BOTTOM_RIGHT);
                                 hBox.getChildren().add(label);
                                 Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
-                            }else if(checkWord[2].equals("imoji03")){
+                            }else if(words[2].equals("imoji03")){
                                 String myMsg = "Me "+img3;
                                 Label label = new Label();
                                 label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -144,7 +141,7 @@ public class ClientController {
                                 hBox.setAlignment(Pos.BOTTOM_RIGHT);
                                 hBox.getChildren().add(label);
                                 Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
-                            }else if(checkWord[2].equals("imoji04")){
+                            }else if(words[2].equals("imoji04")){
                                 String myMsg = "Me "+img4;
                                 Label label = new Label();
                                 label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -154,7 +151,7 @@ public class ClientController {
                                 hBox.setAlignment(Pos.BOTTOM_RIGHT);
                                 hBox.getChildren().add(label);
                                 Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
-                            }else if(checkWord[2].equals("imoji05")){
+                            }else if(words[2].equals("imoji05")){
                                 String myMsg = "Me "+img5;
                                 Label label = new Label();
                                 label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -175,20 +172,8 @@ public class ClientController {
                                 hBox.getChildren().add(label);
                                 Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
                             }
-                        }else if(checkWord[1].equals("img")){
+                        } else if(!words[1].equals("img")){
 
-                            System.out.println("come img");
-
-                            String link = new String();
-                            for (int i = 2; i < words.length; i++) {
-                                link+=words[i];
-                            }
-
-                            //C:\Users\EvolutionCS\OneDrive\Pictures\Screenshots\Screenshot(50).png
-
-                            System.out.println(link);
-
-                        } else {
                             String myMsg = "Me "+nameWithoutMsg;
                             Label label = new Label();
                             label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -200,24 +185,41 @@ public class ClientController {
                             Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
                         }
 
+                    }else if( words[1].equals("img")){
 
-
-                    }else if(! checkWord[1].equals("imoji") && words[1].equals("img")){
-
-                        String riciveMsg = message;
+                        String s ="";
+                        for (int i = 2; i < words.length; i++) {
+                            s += words[i];
+                        }
                         Label label = new Label();
                         label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                         label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-                        label.setStyle("-fx-font-size: 15");
-                        label.setText(riciveMsg);
-                        hBox.setAlignment(Pos.BOTTOM_LEFT);
+                        label.setStyle("-fx-font-size: 20");
+                        label.setText(clientName);
+
+                        File file = new File(s);
+                        Image image = new Image(file.toURI().toString());
+
+                        ImageView imageView = new ImageView(image);
+
+                        imageView.setFitWidth(100);
+                        imageView.setFitHeight(100);
+
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+                        msgVboxAp.setAlignment(Pos.BOTTOM_LEFT);
+                        hBox.setAlignment(Pos.CENTER_LEFT);
+
                         hBox.getChildren().add(label);
-                        Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                        hBox.getChildren().add(imageView);
 
-                    }else if(checkWord[1].equals("imoji")){
+                        Platform.runLater(() -> msgVboxAp.getChildren().addAll(hBox));
 
-                        if (checkWord[2].equals("imoji01")){
-                            String imojiRecuve = checkWord[0]+":"+img1;
+
+                    }else if(words[1].equals("imoji")){
+
+                        if (words[2].equals("imoji01")){
+                            String imojiRecuve = words[0]+":"+img1;
                             Label label = new Label();
                             label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                             label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
@@ -226,8 +228,8 @@ public class ClientController {
                             hBox.setAlignment(Pos.BOTTOM_LEFT);
                             hBox.getChildren().add(label);
                             Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
-                        }else if(checkWord[2].equals("imoji02")){
-                            String imojiRecuve = checkWord[0]+":"+img2;
+                        }else if(words[2].equals("imoji02")){
+                            String imojiRecuve = words[0]+":"+img2;
                             Label label = new Label();
                             label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                             label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
@@ -236,8 +238,8 @@ public class ClientController {
                             hBox.setAlignment(Pos.BOTTOM_LEFT);
                             hBox.getChildren().add(label);
                             Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
-                        }else if(checkWord[2].equals("imoji03")){
-                            String imojiRecuve = checkWord[0]+":"+img3;
+                        }else if(words[2].equals("imoji03")){
+                            String imojiRecuve = words[0]+":"+img3;
                             Label label = new Label();
                             label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                             label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
@@ -246,8 +248,8 @@ public class ClientController {
                             hBox.setAlignment(Pos.BOTTOM_LEFT);
                             hBox.getChildren().add(label);
                             Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
-                        }else if(checkWord[2].equals("imoji04")){
-                            String imojiRecuve = checkWord[0]+":"+img4;
+                        }else if(words[2].equals("imoji04")){
+                            String imojiRecuve = words[0]+":"+img4;
                             Label label = new Label();
                             label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                             label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
@@ -256,8 +258,8 @@ public class ClientController {
                             hBox.setAlignment(Pos.BOTTOM_LEFT);
                             hBox.getChildren().add(label);
                             Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
-                        }else if(checkWord[2].equals("imoji05")){
-                            String imojiRecive = checkWord[0]+":"+img5;
+                        }else if(words[2].equals("imoji05")){
+                            String imojiRecive = words[0]+":"+img5;
                             Label label = new Label();
                             label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                             label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
@@ -267,7 +269,7 @@ public class ClientController {
                             hBox.getChildren().add(label);
                             Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
                         } else {
-                            String imojiRecive = checkWord[0]+":"+img6;
+                            String imojiRecive = words[0]+":"+img6;
                             Label label = new Label();
                             label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                             label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
@@ -279,7 +281,15 @@ public class ClientController {
                         }
 
                     }else {
-                        System.out.println("erpppppppe /////////////////////////////");
+                        String riciveMsg = message;
+                        Label label = new Label();
+                        label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                        label.setStyle("-fx-font-size: 15");
+                        label.setText(riciveMsg);
+                        hBox.setAlignment(Pos.BOTTOM_LEFT);
+                        hBox.getChildren().add(label);
+                        Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
                     }
                 }
 
@@ -381,7 +391,7 @@ public class ClientController {
         mouseClickOnAction();
     }
 
-    public void btnfileOnAction(MouseEvent event) throws IOException {
+    public void btnfileOnAction(MouseEvent event) {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Select Image File");
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
@@ -392,21 +402,25 @@ public class ClientController {
         label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
         label.setStyle("-fx-font-size: 20");
         label.setText("Me :");
-
+        try {
             File file = new File(selectedFile.getPath());
             Image image = new Image(file.toURI().toString());
             ImageView imageView = new ImageView(image);
-            imageView.setFitWidth(200);
-            imageView.setFitHeight(200);
+            imageView.setFitWidth(100);
+            imageView.setFitHeight(100);
             HBox hBox = new HBox(12);
             hBox.setAlignment(Pos.BOTTOM_RIGHT);
             msgVboxAp.setAlignment(Pos.BOTTOM_LEFT);
             hBox.setAlignment(Pos.CENTER_RIGHT);
             hBox.getChildren().add(imageView);
             hBox.getChildren().add(label);
-//            Platform.runLater(() -> msgVboxAp.getChildren().addAll(hBox));
+            Platform.runLater(() -> msgVboxAp.getChildren().addAll(hBox));
             outputStream.writeUTF(clientName+" img " + selectedFile.getPath());
             outputStream.flush();
+        } catch (IOException e) {
+
+        }
+
 
 
     }
