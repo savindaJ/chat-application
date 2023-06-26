@@ -67,7 +67,7 @@
       </Pane>
       <ScrollPane layoutY="64.0" prefHeight="490.0" prefWidth="400.0">
          <content>
-            <VBox fx:id="msgVboxAp" prefHeight="488.0" prefWidth="398.0" />
+            <VBox fx:id="msgVboxAp" prefHeight="491.0" prefWidth="384.0" />
          </content>
       </ScrollPane>
       <Label fx:id="lblimg1" layoutX="25.0" layoutY="559.0" onMouseClicked="#imoji1OnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" prefHeight="35.0" prefWidth="35.0" text="Label">
