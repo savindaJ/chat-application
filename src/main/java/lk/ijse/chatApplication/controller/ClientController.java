@@ -14,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -55,7 +54,6 @@ public class ClientController {
     private DataOutputStream outputStream;
 
     private String clientName;
-    private PrintWriter writer;
 
     private final byte[] emojiByteCode = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8C};
     private final byte[] emojiByteCode1 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8D};
@@ -87,7 +85,6 @@ public class ClientController {
 
                 inputStream = new DataInputStream(socket.getInputStream());
                 outputStream = new DataOutputStream(socket.getOutputStream());
-                writer = new PrintWriter(socket.getOutputStream(), false);
 
                 String message = "";
 
@@ -387,15 +384,15 @@ public class ClientController {
         txtMessage.clear();
     }
 
-    public void txtMessageOnAction(ActionEvent event) {
+    public void txtMessageOnAction() {
         mouseClickOnAction();
     }
 
-    public void btnfileOnAction(MouseEvent event) {
+    public void btnfileOnAction() {
 
 
         Label label = new Label();
-        label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+        label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
         label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
         label.setStyle("-fx-font-size: 20");
         label.setText("Me :");
@@ -404,66 +401,68 @@ public class ClientController {
             fileChooser.setTitle("Select Image File");
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
             File selectedFile = fileChooser.showOpenDialog(null);
-            File file = new File(selectedFile.getPath());
-            Image image = new Image(file.toURI().toString());
-            ImageView imageView = new ImageView(image);
-            imageView.setFitWidth(150);
-            imageView.setFitHeight(150);
-            HBox hBox = new HBox(12);
-            hBox.setAlignment(Pos.BOTTOM_RIGHT);
-            msgVboxAp.setAlignment(Pos.BOTTOM_LEFT);
-            hBox.setAlignment(Pos.CENTER_RIGHT);
-            hBox.getChildren().add(imageView);
-            hBox.getChildren().add(label);
-            Platform.runLater(() -> msgVboxAp.getChildren().addAll(hBox));
+            File file;
+            try {
+                file = new File(selectedFile.getPath());
+                Image image = new Image(file.toURI().toString());
+                ImageView imageView = new ImageView(image);
+                imageView.setFitWidth(150);
+                imageView.setFitHeight(150);
+                HBox hBox = new HBox(12);
+                hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                msgVboxAp.setAlignment(Pos.BOTTOM_LEFT);
+                hBox.setAlignment(Pos.CENTER_RIGHT);
+                hBox.getChildren().add(imageView);
+                hBox.getChildren().add(label);
+                Platform.runLater(() -> msgVboxAp.getChildren().addAll(hBox));
+            } catch (Exception ignored) {
+
+            }
             outputStream.writeUTF(clientName+" img " + selectedFile.getPath());
             outputStream.flush();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
 
         }
-
-
-
     }
 
-    public void imoji1OnAction(MouseEvent event) throws IOException {
+    public void imoji1OnAction() throws IOException {
         String imoji = clientName + " imoji" + " imoji01";
         outputStream.writeUTF(imoji);
         outputStream.flush();
     }
 
-    public void imoji2OnAction(MouseEvent event) throws IOException {
+    public void imoji2OnAction() throws IOException {
         String imoji = clientName + " imoji" + " imoji02";
         outputStream.writeUTF(imoji);
         outputStream.flush();
     }
 
-    public void imoji3OnAction(MouseEvent event) throws IOException {
+    public void imoji3OnAction() throws IOException {
         String imoji = clientName + " imoji" + " imoji03";
         outputStream.writeUTF(imoji);
         outputStream.flush();
     }
 
-    public void imoji4OnAction(MouseEvent event) throws IOException {
+    public void imoji4OnAction() throws IOException {
         String imoji = clientName + " imoji" + " imoji04";
         outputStream.writeUTF(imoji);
         outputStream.flush();
     }
 
-    public void imoji5OnAction(MouseEvent event) throws IOException {
+    public void imoji5OnAction() throws IOException {
         String imoji = clientName + " imoji" + " imoji05";
         outputStream.writeUTF(imoji);
         outputStream.flush();
 
     }
 
-    public void imoji6OnAction(MouseEvent event) throws IOException {
+    public void imoji6OnAction() throws IOException {
         String imoji = clientName + " imoji" + " imoji06";
         outputStream.writeUTF(imoji);
         outputStream.flush();
     }
 
-    public void btnLogOutClicked(MouseEvent event) throws IOException {
+    public void btnLogOutClicked() throws IOException {
         outputStream.writeUTF("finish");
         outputStream.flush();
         Stage stage = (Stage) btnLogOut.getScene().getWindow();
