@@ -57,6 +57,20 @@ public class ClientController {
     private String clientName;
     private PrintWriter writer;
 
+    byte[] emojiByteCode = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8C};
+    byte[] emojiByteCode1 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8D};
+    byte[] emojiByteCode2 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8F};
+    byte[] emojiByteCode3 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x93};
+    byte[] emojiByteCode4 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x98};
+    byte[] emojiByteCode5 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x82};
+
+    String img1 = new String(emojiByteCode, Charset.forName("UTF-8"));
+    String img2 = new String(emojiByteCode1, Charset.forName("UTF-8"));
+    String img3 = new String(emojiByteCode2, Charset.forName("UTF-8"));
+    String img4 = new String(emojiByteCode3, Charset.forName("UTF-8"));
+    String img5 = new String(emojiByteCode4, Charset.forName("UTF-8"));
+    String img6 = new String(emojiByteCode5, Charset.forName("UTF-8"));
+
     @FXML
     void initialize(){
         setImoji();
@@ -96,21 +110,6 @@ public class ClientController {
 
                     String mymsg = message;
                     String[] checkWord = mymsg.split(" ");
-
-
-                    byte[] emojiByteCode = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8C};
-                    byte[] emojiByteCode1 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8D};
-                    byte[] emojiByteCode2 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8F};
-                    byte[] emojiByteCode3 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x93};
-                    byte[] emojiByteCode4 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x98};
-                    byte[] emojiByteCode5 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x82};
-
-                    String img1 = new String(emojiByteCode, Charset.forName("UTF-8"));
-                    String img2 = new String(emojiByteCode1, Charset.forName("UTF-8"));
-                    String img3 = new String(emojiByteCode2, Charset.forName("UTF-8"));
-                    String img4 = new String(emojiByteCode3, Charset.forName("UTF-8"));
-                    String img5 = new String(emojiByteCode4, Charset.forName("UTF-8"));
-                    String img6 = new String(emojiByteCode5, Charset.forName("UTF-8"));
 
                     if (clientName.equalsIgnoreCase(lblClientName.getText())){
 
@@ -273,22 +272,14 @@ public class ClientController {
     }
 
     private void setImoji() {
-        byte[] emojiByteCode = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8C};
-        byte[] emojiByteCode1 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8D};
-        byte[] emojiByteCode2 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8F};
-        byte[] emojiByteCode3 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x93};
-        byte[] emojiByteCode4 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x98};
-        byte[] emojiByteCode5 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x82};
         //https://apps.timwhitlock.info/emoji/tables/unicode#emoji-modal
-
 //        String emoji = new String(emojiByteCode, Charset.forName("UTF-8"));
-
-        lblimg1.setText(new String(emojiByteCode, Charset.forName("UTF-8")));
-        lblimg2.setText(new String(emojiByteCode1, Charset.forName("UTF-8")));
-        lblimg3.setText(new String(emojiByteCode2, Charset.forName("UTF-8")));
-        lblimg4.setText(new String(emojiByteCode3, Charset.forName("UTF-8")));
-        lblimg5.setText(new String(emojiByteCode4, Charset.forName("UTF-8")));
-        lblimg6.setText(new String(emojiByteCode5, Charset.forName("UTF-8")));
+        lblimg1.setText(img1);
+        lblimg2.setText(img2);
+        lblimg3.setText(img3);
+        lblimg4.setText(img4);
+        lblimg5.setText(img5);
+        lblimg6.setText(img6);
     }
 
     public void mouseEnterAnim(MouseEvent event) {
