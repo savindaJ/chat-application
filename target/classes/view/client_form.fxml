@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #b3ccb3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatApplication.controller.ClientController">
+<AnchorPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #8fd9a3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatApplication.controller.ClientController">
    <children>
       <ImageView fx:id="btnSend" fitHeight="39.0" fitWidth="39.0" layoutX="354.0" layoutY="600.0" onMouseClicked="#mouseClickOnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="354.0" AnchorPane.topAnchor="600.0">
          <image>
@@ -31,7 +31,7 @@
             <Image url="@../assets/file.png" />
          </image>
       </ImageView>
-      <Pane layoutX="3.0" layoutY="2.0" prefHeight="64.0" prefWidth="400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="586.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="3.0" layoutY="2.0" prefHeight="64.0" prefWidth="400.0" style="-fx-background-color: #7cd994;" AnchorPane.bottomAnchor="586.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
