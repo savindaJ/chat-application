@@ -18,7 +18,7 @@
             <Image url="@../assets/send2.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtMessage" layoutX="54.0" layoutY="599.0" onAction="#txtMessageOnAction" prefHeight="38.0" prefWidth="296.0" style="-fx-background-radius: 30; -fx-background-color: white;" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="599.0">
+      <TextField fx:id="txtMessage" layoutX="19.0" layoutY="599.0" onAction="#txtMessageOnAction" prefHeight="38.0" prefWidth="331.0" style="-fx-background-radius: 30; -fx-background-color: white;" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="599.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -26,11 +26,6 @@
             <Insets left="20.0" />
          </padding>
       </TextField>
-      <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="11.0" layoutY="599.0" onMouseClicked="#btnimojiOnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/imoji.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="316.0" layoutY="603.0" onMouseClicked="#btnfileOnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/file.png" />
@@ -65,10 +60,34 @@
             </ImageView>
          </children>
       </Pane>
-      <ScrollPane layoutY="64.0" prefHeight="527.0" prefWidth="400.0">
+      <ScrollPane layoutY="64.0" prefHeight="490.0" prefWidth="400.0">
          <content>
-            <VBox fx:id="msgVboxAp" prefHeight="523.0" prefWidth="398.0" />
+            <VBox fx:id="msgVboxAp" prefHeight="488.0" prefWidth="398.0" />
          </content>
       </ScrollPane>
+      <Label fx:id="lblimg1" layoutX="25.0" layoutY="559.0" onMouseClicked="#imoji1OnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" prefHeight="35.0" prefWidth="35.0" text="Label">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font></Label>
+      <Label fx:id="lblimg2" layoutX="79.0" layoutY="559.0" onMouseClicked="#imoji2OnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" prefHeight="35.0" prefWidth="35.0" text="Label">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font></Label>
+      <Label fx:id="lblimg3" layoutX="137.0" layoutY="559.0" onMouseClicked="#imoji3OnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" prefHeight="35.0" prefWidth="35.0" text="Label">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font></Label>
+      <Label fx:id="lblimg4" layoutX="205.0" layoutY="559.0" onMouseClicked="#imoji4OnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" prefHeight="35.0" prefWidth="35.0" text="Label">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font></Label>
+      <Label fx:id="lblimg5" layoutX="263.0" layoutY="559.0" onMouseClicked="#imoji5OnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" prefHeight="35.0" prefWidth="35.0" text="Label">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font></Label>
+      <Label fx:id="lblimg6" layoutX="330.0" layoutY="559.0" onMouseClicked="#imoji6OnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" prefHeight="35.0" prefWidth="35.0" text="Label">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font></Label>
    </children>
 </AnchorPane>

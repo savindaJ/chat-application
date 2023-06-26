@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -16,16 +15,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
-import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +30,12 @@ public class ClientController {
     public TextField txtMessage;
     public ImageView btnSend;
     public VBox msgVboxAp;
+    public Label lblimg1;
+    public Label lblimg2;
+    public Label lblimg3;
+    public Label lblimg4;
+    public Label lblimg5;
+    public Label lblimg6;
     private List<String> fileList;
 
     private DataInputStream inputStream;
@@ -44,6 +46,7 @@ public class ClientController {
 
     @FXML
     void initialize(){
+        setImoji();
         lblClientName.setText(HomeFormController.name);
         clientName = lblClientName.getText();
         fileList=new ArrayList<>();
@@ -75,70 +78,105 @@ public class ClientController {
                         nameWithoutMsg.append(words[i]+" ");
                     }
 
-                    String[] msgToAr = msg.split(" ");
-                    String st = "";
-                    for (int i = 0; i < msgToAr.length - 1; i++) {
-                        st += msgToAr[i + 1] + " ";
-                    }
-
-                    System.out.println("image path"+st);
-
-                    Text text = new Text(st);
-                    String firstChars = "";
-                    if (st.length() > 3) {
-                        firstChars = st.substring(1, 4);
-                        System.out.println(firstChars);
-                    }
-
                     HBox hBox = new HBox(12);
 
-                    if (firstChars.equalsIgnoreCase("img")){
-                        st = st.substring(3, st.length() - 1);
+                    String mymsg = message;
+                    String[] chec = msg.split(" ");
+                    String names = words[0];
 
+                    byte[] emojiByteCode = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8C};
+                    byte[] emojiByteCode1 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8D};
+                    byte[] emojiByteCode2 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8F};
+                    byte[] emojiByteCode3 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x93};
+                    byte[] emojiByteCode4 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x98};
+                    byte[] emojiByteCode5 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x82};
 
-                        File file = new File(st);
-                        Image image = new Image(file.toURI().toString());
-
-                        ImageView imageView = new ImageView(image);
-
-                        imageView.setFitHeight(150);
-                        imageView.setFitWidth(200);
-                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
-
-                        if (!clientName.equalsIgnoreCase(lblClientName.getText())) {
-
-                            msgVboxAp.setAlignment(Pos.TOP_LEFT);
-                            hBox.setAlignment(Pos.CENTER_LEFT);
-
-
-                            Text text1 = new Text("  " + clientName + " :");
-                            hBox.getChildren().add(text1);
-                            hBox.getChildren().add(imageView);
-
-                        } else {
-                            hBox.setAlignment(Pos.BOTTOM_RIGHT);
-                            hBox.getChildren().add(imageView);
-                            Text text1 = new Text(": Me ");
-                            hBox.getChildren().add(text1);
-
-                        }
-
-                        Platform.runLater(() -> msgVboxAp.getChildren().addAll(hBox));
-                    }
-
+                    String img1 = new String(emojiByteCode, Charset.forName("UTF-8"));
+                    String img2 = new String(emojiByteCode1, Charset.forName("UTF-8"));
+                    String img3 = new String(emojiByteCode2, Charset.forName("UTF-8"));
+                    String img4 = new String(emojiByteCode3, Charset.forName("UTF-8"));
+                    String img5 = new String(emojiByteCode4, Charset.forName("UTF-8"));
+                    String img6 = new String(emojiByteCode5, Charset.forName("UTF-8"));
 
                     if (clientName.equalsIgnoreCase(lblClientName.getText())){
-                        String myMsg = "Me \n"+nameWithoutMsg;
-                        Label label = new Label();
 
-                        label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
-                        label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-                        label.setStyle("-fx-font-size: 15");
-                        label.setText(myMsg);
-                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
-                        hBox.getChildren().add(label);
-                        Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
-                    }else {
+                        if (chec[1].equals("imoji")){
+                            if (chec[2].equals("imoji01")){
+                                String myMsg = "Me "+img1;
+                                Label label = new Label();
+                                label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
+                                label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                                label.setStyle("-fx-font-size: 20");
+                                label.setText(myMsg);
+                                hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                                hBox.getChildren().add(label);
+                                Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                            }else if(chec[2].equals("imoji02")){
+                                String myMsg = "Me "+img2;
+                                Label label = new Label();
+                                label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
+                                label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                                label.setStyle("-fx-font-size: 20");
+                                label.setText(myMsg);
+                                hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                                hBox.getChildren().add(label);
+                                Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                            }else if(chec[2].equals("imoji03")){
+                                String myMsg = "Me "+img3;
+                                Label label = new Label();
+                                label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
+                                label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                                label.setStyle("-fx-font-size: 20");
+                                label.setText(myMsg);
+                                hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                                hBox.getChildren().add(label);
+                                Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                            }else if(chec[2].equals("imoji04")){
+                                String myMsg = "Me "+img4;
+                                Label label = new Label();
+                                label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
+                                label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                                label.setStyle("-fx-font-size: 20");
+                                label.setText(myMsg);
+                                hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                                hBox.getChildren().add(label);
+                                Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                            }else if(chec[2].equals("imoji05")){
+                                String myMsg = "Me "+img5;
+                                Label label = new Label();
+                                label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
+                                label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                                label.setStyle("-fx-font-size: 20");
+                                label.setText(myMsg);
+                                hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                                hBox.getChildren().add(label);
+                                Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                            }else {
+                                String myMsg = "Me "+img6;
+                                Label label = new Label();
+                                label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
+                                label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                                label.setStyle("-fx-font-size: 20");
+                                label.setText(myMsg);
+                                hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                                hBox.getChildren().add(label);
+                                Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                            }
+                        }else {
+                            String myMsg = "Me "+nameWithoutMsg;
+                            Label label = new Label();
+                            label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
+                            label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                            label.setStyle("-fx-font-size: 15");
+                            label.setText(myMsg);
+                            hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                            hBox.getChildren().add(label);
+                            Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                        }
+
+
+
+                    }else if(! chec[1].equals("imoji")){
 
                         String riciveMsg = message;
 
@@ -150,21 +188,95 @@ public class ClientController {
                         hBox.setAlignment(Pos.BOTTOM_LEFT);
                         hBox.getChildren().add(label);
                         Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                    }else {
+                        if (chec[2].equals("imoji01")){
+                            String imojiRecuve = chec[0]+":"+img1;
+                            Label label = new Label();
+                            label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                            label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                            label.setStyle("-fx-font-size: 20");
+                            label.setText(imojiRecuve);
+                            hBox.setAlignment(Pos.BOTTOM_LEFT);
+                            hBox.getChildren().add(label);
+                            Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                        }else if(chec[2].equals("imoji02")){
+                            String imojiRecuve = chec[0]+":"+img2;
+                            Label label = new Label();
+                            label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                            label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                            label.setStyle("-fx-font-size: 20");
+                            label.setText(imojiRecuve);
+                            hBox.setAlignment(Pos.BOTTOM_LEFT);
+                            hBox.getChildren().add(label);
+                            Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                        }else if(chec[2].equals("imoji03")){
+                            String imojiRecuve = chec[0]+":"+img3;
+                            Label label = new Label();
+                            label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                            label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                            label.setStyle("-fx-font-size: 20");
+                            label.setText(imojiRecuve);
+                            hBox.setAlignment(Pos.BOTTOM_LEFT);
+                            hBox.getChildren().add(label);
+                            Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                        }else if(chec[2].equals("imoji04")){
+                            String imojiRecuve = chec[0]+":"+img4;
+                            Label label = new Label();
+                            label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                            label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                            label.setStyle("-fx-font-size: 20");
+                            label.setText(imojiRecuve);
+                            hBox.setAlignment(Pos.BOTTOM_LEFT);
+                            hBox.getChildren().add(label);
+                            Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                        }else if(chec[2].equals("imoji05")){
+                            String imojiRecuve = chec[0]+":"+img5;
+                            Label label = new Label();
+                            label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                            label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                            label.setStyle("-fx-font-size: 20");
+                            label.setText(imojiRecuve);
+                            hBox.setAlignment(Pos.BOTTOM_LEFT);
+                            hBox.getChildren().add(label);
+                            Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                        }else {
+                            String imojiRecuve = chec[0]+":"+img6;
+                            Label label = new Label();
+                            label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                            label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                            label.setStyle("-fx-font-size: 20");
+                            label.setText(imojiRecuve);
+                            hBox.setAlignment(Pos.BOTTOM_LEFT);
+                            hBox.getChildren().add(label);
+                            Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                        }
+
                     }
                 }
 
             } catch (IOException e) {
-                HBox hBox = new HBox();
-                Label label = new Label();
-                label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
-                label.setBorder(new Border(new BorderStroke(Color.ALICEBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-                label.setStyle("-fx-font-size: 15");
-                label.setText("left client");
-                hBox.setAlignment(Pos.CENTER);
-                hBox.getChildren().add(label);
-                Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
+                System.out.println("disconnected !");
             }
         }).start();
+    }
+
+    private void setImoji() {
+        byte[] emojiByteCode = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8C};
+        byte[] emojiByteCode1 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8D};
+        byte[] emojiByteCode2 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x8F};
+        byte[] emojiByteCode3 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x93};
+        byte[] emojiByteCode4 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x98};
+        byte[] emojiByteCode5 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x82};
+        //https://apps.timwhitlock.info/emoji/tables/unicode#emoji-modal
+
+//        String emoji = new String(emojiByteCode, Charset.forName("UTF-8"));
+
+        lblimg1.setText(new String(emojiByteCode, Charset.forName("UTF-8")));
+        lblimg2.setText(new String(emojiByteCode1, Charset.forName("UTF-8")));
+        lblimg3.setText(new String(emojiByteCode2, Charset.forName("UTF-8")));
+        lblimg4.setText(new String(emojiByteCode3, Charset.forName("UTF-8")));
+        lblimg5.setText(new String(emojiByteCode4, Charset.forName("UTF-8")));
+        lblimg6.setText(new String(emojiByteCode5, Charset.forName("UTF-8")));
     }
 
     public void mouseEnterAnim(MouseEvent event) {
@@ -184,11 +296,37 @@ public class ClientController {
             glow.setRadius(15);
             icon.setEffect(glow);
         }
+
+        if (event.getSource() instanceof javafx.scene.control.Label) {
+            javafx.scene.control.Label icon = (Label) event.getSource();
+
+            ScaleTransition scaleT = new ScaleTransition(Duration.millis(200), icon);
+            scaleT.setToX(1.2);
+            scaleT.setToY(1.2);
+            scaleT.play();
+
+            DropShadow glow = new DropShadow();
+//            glow.setColor(Color.valueOf("#EF233C"));
+            glow.setColor(Color.CORNFLOWERBLUE);
+            glow.setWidth(15);
+            glow.setHeight(15);
+            glow.setRadius(15);
+            icon.setEffect(glow);
+        }
     }
 
     public void mouseExitAnim(MouseEvent event) {
         if (event.getSource() instanceof ImageView) {
             ImageView icon = (ImageView) event.getSource();
+            ScaleTransition scaleT = new ScaleTransition(Duration.millis(200), icon);
+            scaleT.setToX(1);
+            scaleT.setToY(1);
+            scaleT.play();
+            icon.setEffect(null);
+        }
+
+        if (event.getSource() instanceof Label) {
+            Label icon = (Label) event.getSource();
             ScaleTransition scaleT = new ScaleTransition(Duration.millis(200), icon);
             scaleT.setToX(1);
             scaleT.setToY(1);
@@ -222,9 +360,6 @@ public class ClientController {
         mouseClickOnAction();
     }
 
-    public void btnimojiOnAction(MouseEvent event) {
-    }
-
     public void btnfileOnAction(MouseEvent event) throws IOException {
         FileChooser chooser =new FileChooser();
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("choose allowed ",fileList));
@@ -237,4 +372,42 @@ public class ClientController {
             System.out.println("flushed !");
         }
     }
+
+    public void imoji1OnAction(MouseEvent event) throws IOException {
+        String imoji = clientName + " imoji" + " imoji01";
+        outputStream.writeUTF(imoji);
+        outputStream.flush();
+    }
+
+    public void imoji2OnAction(MouseEvent event) throws IOException {
+        String imoji = clientName + " imoji" + " imoji02";
+        outputStream.writeUTF(imoji);
+        outputStream.flush();
+    }
+
+    public void imoji3OnAction(MouseEvent event) throws IOException {
+        String imoji = clientName + " imoji" + " imoji03";
+        outputStream.writeUTF(imoji);
+        outputStream.flush();
+    }
+
+    public void imoji4OnAction(MouseEvent event) throws IOException {
+        String imoji = clientName + " imoji" + " imoji04";
+        outputStream.writeUTF(imoji);
+        outputStream.flush();
+    }
+
+    public void imoji5OnAction(MouseEvent event) throws IOException {
+        String imoji = clientName + " imoji" + " imoji05";
+        outputStream.writeUTF(imoji);
+        outputStream.flush();
+
+    }
+
+    public void imoji6OnAction(MouseEvent event) throws IOException {
+        String imoji = clientName + " imoji" + " imoji06";
+        outputStream.writeUTF(imoji);
+        outputStream.flush();
+    }
+
 }
