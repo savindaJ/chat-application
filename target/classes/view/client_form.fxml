@@ -43,19 +43,24 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="23.0" fitWidth="138.0" layoutX="360.0" layoutY="22.0" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="23.0" fitWidth="138.0" layoutX="304.0" layoutY="22.0" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/dots.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="43.0" layoutX="319.0" layoutY="20.0" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="43.0" layoutX="263.0" layoutY="20.0" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/video.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="267.0" layoutY="20.0" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="211.0" layoutY="20.0" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/call.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnLogOut" fitHeight="39.0" fitWidth="35.0" layoutX="345.0" layoutY="16.0" onMouseClicked="#btnLogOutClicked" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-logout.gif" />
                </image>
             </ImageView>
          </children>

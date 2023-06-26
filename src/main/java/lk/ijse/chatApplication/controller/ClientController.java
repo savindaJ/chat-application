@@ -36,6 +36,7 @@ public class ClientController {
     public Label lblimg4;
     public Label lblimg5;
     public Label lblimg6;
+    public ImageView btnLogOut;
     private List<String> fileList;
 
     private DataInputStream inputStream;
@@ -409,4 +410,10 @@ public class ClientController {
         outputStream.flush();
     }
 
+    public void btnLogOutClicked(MouseEvent event) throws IOException {
+        outputStream.writeUTF("finish");
+        outputStream.flush();
+        Stage stage = (Stage) btnSend.getScene().getWindow();
+        stage.close();
+    }
 }
