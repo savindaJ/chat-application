@@ -202,7 +202,7 @@ public class ClientController {
 
                         ImageView imageView = new ImageView(image);
 
-                        imageView.setFitWidth(100);
+                        imageView.setFitWidth(150);
                         imageView.setFitHeight(150);
 
                         hBox.setAlignment(Pos.BOTTOM_RIGHT);
@@ -407,7 +407,7 @@ public class ClientController {
             File file = new File(selectedFile.getPath());
             Image image = new Image(file.toURI().toString());
             ImageView imageView = new ImageView(image);
-            imageView.setFitWidth(100);
+            imageView.setFitWidth(150);
             imageView.setFitHeight(150);
             HBox hBox = new HBox(12);
             hBox.setAlignment(Pos.BOTTOM_RIGHT);
