@@ -22,6 +22,7 @@ public class HomeFormController {
     public ImageView btnjon;
     static String name="";
 
+
     @FXML
     void initialize(){
        new Thread(()->{
