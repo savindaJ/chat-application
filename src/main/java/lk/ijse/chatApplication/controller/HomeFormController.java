@@ -1,7 +1,6 @@
 package lk.ijse.chatApplication.controller;
 
 import javafx.animation.ScaleTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,15 +21,12 @@ public class HomeFormController {
     public ImageView btnjon;
     static String name="";
 
-
     @FXML
     void initialize(){
-       new Thread(()->{
-           ChatServer.start();
-       }).start();
+       new Thread(ChatServer::start).start();
     }
 
-    public void txtjonOnActon(ActionEvent event) {
+    public void txtjonOnActon() {
         btnjonClick();
     }
 

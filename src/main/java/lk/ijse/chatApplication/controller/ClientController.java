@@ -21,6 +21,7 @@ import javafx.util.Duration;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +49,6 @@ public class ClientController {
     @FXML
     private ImageView btnLogOut;
 
-    private List<String> fileList;
-
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
 
@@ -62,19 +61,19 @@ public class ClientController {
     private final byte[] emojiByteCode4 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x98};
     private final byte[] emojiByteCode5 = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x82};
 
-    private final String img1 = new String(emojiByteCode, Charset.forName("UTF-8"));
-    private final String img2 = new String(emojiByteCode1, Charset.forName("UTF-8"));
-    private final String img3 = new String(emojiByteCode2, Charset.forName("UTF-8"));
-    private final String img4 = new String(emojiByteCode3, Charset.forName("UTF-8"));
-    private final String img5 = new String(emojiByteCode4, Charset.forName("UTF-8"));
-    private final String img6 = new String(emojiByteCode5, Charset.forName("UTF-8"));
+    private final String img1 = new String(emojiByteCode, StandardCharsets.UTF_8);
+    private final String img2 = new String(emojiByteCode1, StandardCharsets.UTF_8);
+    private final String img3 = new String(emojiByteCode2, StandardCharsets.UTF_8);
+    private final String img4 = new String(emojiByteCode3, StandardCharsets.UTF_8);
+    private final String img5 = new String(emojiByteCode4, StandardCharsets.UTF_8);
+    private final String img6 = new String(emojiByteCode5, StandardCharsets.UTF_8);
 
     @FXML
     void initialize(){
         setImoji();
         lblClientName.setText(HomeFormController.name);
         clientName = lblClientName.getText();
-        fileList=new ArrayList<>();
+        List<String> fileList = new ArrayList<>();
         fileList.add("*.jpg");
         fileList.add("*.doc");
         fileList.add("*.png");
