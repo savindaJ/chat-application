@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.event.Event;
-import lk.ijse.chatApplication.util.ChatServer;
+
 
 import java.io.IOException;
 
@@ -24,7 +24,11 @@ public class HomeFormController {
 
     @FXML
     void initialize(){
+        setServerUI();
+//       new Thread(ChatServer::start).start();
+    }
 
+    private void setServerUI() {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/server_form.fxml"));
         stage.getIcons().add(new Image("/assets/send3D.png"));
@@ -38,8 +42,6 @@ public class HomeFormController {
         stage.setTitle("ChatServer");
         stage.show();
         stage.centerOnScreen();
-
-//       new Thread(ChatServer::start).start();
     }
 
     public void txtjonOnActon() {

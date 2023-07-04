@@ -1,8 +1,10 @@
 package lk.ijse.chatApplication.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import java.io.DataInputStream;
@@ -16,6 +18,8 @@ import java.util.List;
 public class ServerFormController {
     private static final List<Socket> socketList = new ArrayList<>();
     static DataOutputStream outputStream = null;
+    @FXML
+    private Label lblNumClients;
 
     @FXML
     private TextArea areaDetail;
@@ -41,7 +45,7 @@ public class ServerFormController {
                            DataInputStream  inputStream = new DataInputStream(finalClientSocket.getInputStream());
                            int port = finalClientSocket.getPort();
                            socketList.add(finalClientSocket);
-
+                            setNumberOfClients();
                            String incomingMessage = "";
 //                           System.out.println(incomingMessage);
                            while (!(incomingMessage = inputStream.readUTF()).equals("finish")) {
@@ -56,6 +60,7 @@ public class ServerFormController {
                            finalClientSocket.close();
 //                           System.out.println("Client disconnected: " + port);
                            areaDetail.appendText("\n"+"Client disconnected: " + port);
+                           setNumberOfClients();
                        } catch (IOException e) {
                            areaDetail.appendText("\n"+"Client disconnected ! ");
 //                           System.out.println("disconnected !");
@@ -70,6 +75,10 @@ public class ServerFormController {
            }
        }).start();
 
+    }
+
+    private void setNumberOfClients() {
+        Platform.runLater(() -> lblNumClients.setText(String.valueOf(socketList.size())));
     }
 
     private static void sentMessage(Socket socket, String incomingMessage) throws IOException {
