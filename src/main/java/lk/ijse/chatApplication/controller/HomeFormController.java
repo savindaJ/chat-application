@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.event.Event;
 import lk.ijse.chatApplication.util.ChatServer;
 
 import java.io.IOException;
@@ -62,6 +63,7 @@ public class HomeFormController {
         stage.setTitle(HomeFormController.name +" in your chat");
         stage.show();
         stage.centerOnScreen();
+        stage.setOnCloseRequest(Event::consume);
         txtjon.clear();
     }
 
