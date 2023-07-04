@@ -173,7 +173,7 @@ public class ClientController {
                             Label label = new Label();
                             label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
                             label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-                            label.setStyle("-fx-font-size: 15");
+                            label.setStyle("-fx-font-size: 18");
                             label.setText(myMsg);
                             hBox.setAlignment(Pos.BOTTOM_RIGHT);
                             hBox.getChildren().add(label);
@@ -280,7 +280,7 @@ public class ClientController {
                         Label label = new Label();
                         label.setBackground(new Background(new BackgroundFill(Color.GREENYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                         label.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-                        label.setStyle("-fx-font-size: 15");
+                        label.setStyle("-fx-font-size: 18");
 //                        label.setStyle("-fx-border-radius: 20");
                         label.setText(riciveMsg);
                         hBox.setAlignment(Pos.BOTTOM_LEFT);
