@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #8fd9a3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatApplication.controller.ClientController">
+<AnchorPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #7cd994;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatApplication.controller.ClientController">
    <children>
       <ImageView fx:id="btnSend" fitHeight="39.0" fitWidth="39.0" layoutX="354.0" layoutY="600.0" onMouseClicked="#mouseClickOnAction" onMouseEntered="#mouseEnterAnim" onMouseExited="#mouseExitAnim" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="354.0" AnchorPane.topAnchor="600.0">
          <image>
