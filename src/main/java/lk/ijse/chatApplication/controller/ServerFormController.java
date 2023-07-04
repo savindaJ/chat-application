@@ -83,7 +83,7 @@ public class ServerFormController {
     }
 
     public void btnStopOnAction(ActionEvent actionEvent) {
-
+        System.exit(0);
     }
 
 }
