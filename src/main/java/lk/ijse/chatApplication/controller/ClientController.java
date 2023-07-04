@@ -76,9 +76,7 @@ public class ClientController {
         clientName = lblClientName.getText();
         List<String> fileList = new ArrayList<>();
         fileList.add("*.jpg");
-        fileList.add("*.doc");
         fileList.add("*.png");
-        fileList.add("*.pdf");
 
         new Thread(()->{
             try (Socket socket = new Socket("localhost",3031);){
