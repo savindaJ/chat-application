@@ -289,7 +289,7 @@ public class ClientController {
                 }
 
             } catch (IOException e) {
-                System.out.println("disconnected !");
+                System.out.println("server not start !");
             }
         }).start();
     }
