@@ -24,24 +24,23 @@ public class HomeFormController {
 
     @FXML
     void initialize(){
-        setServerUI();
+        try {
+            setServerUI();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 //       new Thread(ChatServer::start).start();
     }
 
-    private void setServerUI() {
+    private void setServerUI() throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/server_form.fxml"));
         stage.getIcons().add(new Image("/assets/send3D.png"));
-        try {
-            stage.setScene(new Scene(fxmlLoader.load()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        stage.setScene(new Scene(fxmlLoader.load()));
         stage.setResizable(false);
         stage.setTitle("ChatServer");
+        stage.setOnCloseRequest(Event::consume);
         stage.show();
-        stage.centerOnScreen();
     }
 
     public void txtjonOnActon() {
