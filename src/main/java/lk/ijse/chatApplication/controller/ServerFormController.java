@@ -34,10 +34,12 @@ public class ServerFormController {
            try (ServerSocket serverSocket = new ServerSocket(3031)){
 
 //               System.out.println("Server started. Waiting for client connections...");
+               areaDetail.setStyle("-fx-text-fill: red");
                 areaDetail.appendText("Server started. Waiting for client connections...");
                while (true) {
                    clientSocket = serverSocket.accept();
 //                   System.out.println("Client connected: " + clientSocket);
+                   areaDetail.setStyle("-fx-text-fill: green");
                    areaDetail.appendText("\n"+"Client connected: " + clientSocket);
                    Socket finalClientSocket = clientSocket;
                    Thread clientThread = new Thread(() -> {
@@ -59,9 +61,11 @@ public class ServerFormController {
                            socketList.remove(finalClientSocket);
                            finalClientSocket.close();
 //                           System.out.println("Client disconnected: " + port);
+                           areaDetail.setStyle("-fx-text-fill: green");
                            areaDetail.appendText("\n"+"Client disconnected: " + port);
                            setNumberOfClients();
                        } catch (IOException e) {
+                           areaDetail.setStyle("-fx-text-fill: green");
                            areaDetail.appendText("\n"+"Client disconnected ! ");
 //                           System.out.println("disconnected !");
                            System.exit(0);
