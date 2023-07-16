@@ -20,12 +20,8 @@ public class ServerFormController {
     static DataOutputStream outputStream = null;
     @FXML
     private Label lblNumClients;
-
     @FXML
     private TextArea areaDetail;
-
-    @FXML
-    private Button btnStop;
 
     @FXML
     void initialize(){

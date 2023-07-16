@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -79,7 +81,7 @@ public class ClientController {
         fileList.add("*.png");
 
         new Thread(()->{
-            try (Socket socket = new Socket("localhost",3031);){
+            try (Socket socket = new Socket("localhost",3031)){
 
                 inputStream = new DataInputStream(socket.getInputStream());
                 outputStream = new DataOutputStream(socket.getOutputStream());
@@ -94,6 +96,10 @@ public class ClientController {
                     String msg = message;
                     String[] words = msg.split(" ");
                     String clientName = words[0];
+
+                    if(words[1].equals("") || !(words.length >1)){
+                       continue;
+                    }
 
 
                     StringBuilder nameWithoutMsg = new StringBuilder();
@@ -169,11 +175,11 @@ public class ClientController {
                             }
                         } else if(!words[1].equals("img")){
 
-                            String myMsg = "Me "+nameWithoutMsg;
+                            String myMsg = "Me"+nameWithoutMsg;
                             Label label = new Label();
                             label.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
                             label.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-                            label.setStyle("-fx-font-size: 18");
+                            label.setStyle("-fx-font-size: 15");
                             label.setText(myMsg);
                             hBox.setAlignment(Pos.BOTTOM_RIGHT);
                             hBox.getChildren().add(label);
@@ -285,6 +291,7 @@ public class ClientController {
                         label.setText(riciveMsg);
                         hBox.setAlignment(Pos.BOTTOM_LEFT);
                         hBox.getChildren().add(label);
+
                         Platform.runLater(()->msgVboxAp.getChildren().addAll(hBox));
                     }
                 }

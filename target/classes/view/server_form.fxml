@@ -18,7 +18,7 @@
       </Label>
       <TextArea fx:id="areaDetail" editable="false" layoutX="14.0" layoutY="82.0" prefHeight="253.0" prefWidth="577.0" style="-fx-border-radius: 30;">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font size="15.0" />
          </font></TextArea>
       <Label layoutX="14.0" layoutY="59.0" text="Server Detail..." />
       <Button fx:id="btnStop" layoutX="528.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnStopOnAction" prefHeight="29.0" prefWidth="59.0" style="-fx-background-color: #3af0bc;" text="Stop">
